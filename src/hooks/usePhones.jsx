@@ -14,6 +14,4 @@ export const usePhones = () => {
       setLoading(false)
     })
   }, [])
-
-  return { phones, loading }
 }

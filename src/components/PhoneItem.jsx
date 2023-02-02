@@ -12,7 +12,7 @@ export const PhoneItem = ({ phone }) => {
       <div>
         {phone.brand} {phone.model}
       </div>
-      {phone.price}
+      {phone.price} &euro;
     </Link>
   )
 }

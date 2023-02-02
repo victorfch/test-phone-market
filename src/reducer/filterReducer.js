@@ -1,7 +1,6 @@
 export const filterReducer = (state = [], action) => {
   const options = {
     "@filter/set": () => {
-      console.log("me han llamado")
       return action.payload
     }
   }

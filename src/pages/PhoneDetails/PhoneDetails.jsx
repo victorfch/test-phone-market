@@ -1,13 +1,32 @@
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { useSinglePhone } from "../../hooks/useSinglePhone"
 
 export const PhoneDetails = () => {
   const { id } = useParams()
-  const { phone } = useSinglePhone(id)
+  const { phone, loading } = useSinglePhone(id)
+  const [color, setColor] = useState()
+  const [storage, setStorage] = useState()
   const keys = Object.keys(phone)
   const dispatch = useDispatch()
 
+  const handleAddToCart = () => {
+    const item = {
+      id: id,
+    }
+
+    item.storageCode =
+      phone.storage?.length === 1 ? phone.storage[0].value : storage
+
+    item.colorCode = phone.color?.length === 1 ? phone.color[0].value : color
+
+    dispatch({ type: "@cart/add", payload: item })
+  }
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
   return (
     <div style={{ display: "flex", justifyContent: "space-around" }}>
       <div>
@@ -16,7 +35,7 @@ export const PhoneDetails = () => {
       <div>
         <div>
           {keys.map((key, id) => {
-            if (key !== "id" && phone[key] && key !== "img")
+            if (!["id", "img", "storage", "color"].includes(key) && phone[key])
               return (
                 <div key={id}>
                   <span>{key}:</span>
@@ -26,20 +45,35 @@ export const PhoneDetails = () => {
           })}
         </div>
         <div>
-          <input type="text" placeholder="select almacenamiento" />
-          <input type="text" placeholder="select color" />
-          <button
-            onClick={() => dispatch({ type: "@cart/add", payload: phone })}
-          >
-            Add to cart
-          </button>
+          <select onChange={({ target }) => setStorage(target.value)}>
+            {phone && phone.storage?.length > 1 && (
+              <option selected disabled>
+                Select storage
+              </option>
+            )}
+            {phone &&
+              phone.storage?.map(storage => (
+                <option key={storage.value} value={storage.value}>
+                  {storage.text}
+                </option>
+              ))}
+          </select>
 
-          {/* 
-            Al guardar el producto al carrito se añadira la info de:
-            id producto
-            cod color
-            cod capacidad almacenamiento
-          */}
+          <select onChange={({ target }) => setColor(target.value)}>
+            {phone && phone.color?.length > 1 && (
+              <option selected disabled>
+                Select color
+              </option>
+            )}
+            {phone &&
+              phone.color?.map(color => (
+                <option key={color.value} value={color.value}>
+                  {color.text}
+                </option>
+              ))}
+          </select>
+
+          <button onClick={handleAddToCart}>Add to cart</button>
         </div>
       </div>
     </div>
