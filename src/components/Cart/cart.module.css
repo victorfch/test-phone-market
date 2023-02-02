@@ -1,0 +1,18 @@
+.cart {
+  padding: 10px 15px;
+  border: 1px solid grey;
+  position: relative;
+  border-radius: 5px;
+
+}
+
+.cart_len {
+  position: absolute;
+  background: blue;
+  border-radius: 50%;
+  top: -10px;
+  left: 80%;
+  padding: .35rem .65rem;
+  color: white;
+  font-weight: bold;
+}
