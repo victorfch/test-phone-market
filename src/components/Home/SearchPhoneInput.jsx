@@ -1,17 +1,24 @@
 import { Container, TextField } from "@mui/material"
+import { useSelector } from "react-redux"
 
-export const SearchPhoneInput = ({ phones }) => {
-  const filteredPhones = phones.filter(phone => {
-    if (!target.value) return true
-    const includeBrand = phone.brand
-      .toLowerCase()
-      .includes(target.value.toLowerCase())
-    const includeModel = phone.model
-      .toLowerCase()
-      .includes(target.value.toLowerCase())
-    const match = includeBrand || includeModel
-    return match
-  })
+const filterByField = (field, search) => {
+  return field.toLowerCase().includes(search.toLowerCase())
+}
+
+export const SearchPhoneInput = ({ onInput }) => {
+  const phones = useSelector(state => state.phones)
+
+  const handleInput = ({ target }) => {
+    const filteredPhones = phones.filter(phone => {
+      if (!target.value) return true
+      const includeBrand = filterByField(phone.brand, target.value)
+      const includeModel = filterByField(phone.model, target.value)
+
+      return includeBrand || includeModel
+    })
+
+    onInput(filteredPhones)
+  }
 
   return (
     <Container maxWidth="xl" style={{ display: "flex", justifyContent: "end" }}>
