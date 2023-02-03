@@ -1,7 +1,8 @@
 import { Box, Container, TextField } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
-import { PhoneItem } from "../../components/PhoneItem"
-import styles from "./home.module.css"
+import { PhoneItem } from "../../components/Home/PhoneItem"
+import { PhonesList } from "../../components/Home/PhonesList"
+import { SearchPhoneInput } from "../../components/Home/SearchPhoneInput"
 
 export const Home = () => {
   const phones = useSelector(state => state.phones)
@@ -26,6 +27,7 @@ export const Home = () => {
 
   return (
     <div style={{ padding: "1rem 2rem" }}>
+      {/*<SearchPhoneInput />*/}
       <Container
         maxWidth="xl"
         style={{ display: "flex", justifyContent: "end" }}
@@ -38,19 +40,7 @@ export const Home = () => {
           label="Search..."
         />
       </Container>
-      <Box
-        maxWidth="100%"
-        display="flex"
-        flexDirection="column"
-        marginBottom="2rem"
-      >
-        <div className={styles.gallery}>
-          {filterPhones &&
-            filterPhones.map(phone => (
-              <PhoneItem key={phone.id} phone={phone} />
-            ))}
-        </div>
-      </Box>
+      <PhonesList />
     </div>
   )
 }

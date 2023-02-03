@@ -1,4 +1,4 @@
-import { ShoppingBag, ShoppingCart } from "@mui/icons-material"
+import { ShoppingCart } from "@mui/icons-material"
 import { Badge } from "@mui/material"
 import { useSelector } from "react-redux"
 

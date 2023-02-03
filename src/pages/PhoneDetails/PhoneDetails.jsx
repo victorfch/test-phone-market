@@ -3,6 +3,7 @@ import { Box, Button } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { PhoneInformation } from "../../components/PhoneDetails/PhoneInformation"
 import { useSinglePhone } from "../../hooks/useSinglePhone"
 
 export const PhoneDetails = () => {
@@ -10,7 +11,6 @@ export const PhoneDetails = () => {
   const { phone, loading } = useSinglePhone(id)
   const [color, setColor] = useState()
   const [storage, setStorage] = useState()
-  const keys = Object.keys(phone)
   const dispatch = useDispatch()
 
   const handleAddToCart = () => {
@@ -35,17 +35,8 @@ export const PhoneDetails = () => {
         <img src={phone.img} alt={`${phone.brand} ${phone.model}`} />
       </div>
       <div>
-        <Box display="flex" flexDirection="column" gap="10px">
-          {keys.map((key, id) => {
-            if (!["id", "img", "storage", "color"].includes(key) && phone[key])
-              return (
-                <div key={id}>
-                  <span style={{ fontWeight: "bold" }}>{key}: </span>
-                  {phone[key]}
-                </div>
-              )
-          })}
-        </Box>
+        <PhoneInformation phone={phone} />
+
         <Box
           marginTop="1rem"
           display="flex"
