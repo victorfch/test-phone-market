@@ -1,3 +1,4 @@
+import { Box, Container, TextField } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { PhoneItem } from "../../components/PhoneItem"
 import styles from "./home.module.css"
@@ -25,15 +26,31 @@ export const Home = () => {
 
   return (
     <div style={{ padding: "1rem 2rem" }}>
-      <div
-        style={{ display: "flex", justifyContent: "flex-end", padding: "1rem" }}
+      <Container
+        maxWidth="xl"
+        style={{ display: "flex", justifyContent: "end" }}
       >
-        <input onInput={handleInput} type="text" />
-      </div>
-      <div className={styles.gallery}>
-        {filterPhones &&
-          filterPhones.map(phone => <PhoneItem key={phone.id} phone={phone} />)}
-      </div>
+        <TextField
+          size="small"
+          style={{ margin: "1rem 2rem 1rem 0" }}
+          onInput={handleInput}
+          variant="outlined"
+          label="Search..."
+        />
+      </Container>
+      <Box
+        maxWidth="100%"
+        display="flex"
+        flexDirection="column"
+        marginBottom="2rem"
+      >
+        <div className={styles.gallery}>
+          {filterPhones &&
+            filterPhones.map(phone => (
+              <PhoneItem key={phone.id} phone={phone} />
+            ))}
+        </div>
+      </Box>
     </div>
   )
 }

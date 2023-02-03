@@ -1,3 +1,5 @@
+import { AddBox, AddShoppingCart } from "@mui/icons-material"
+import { Box, Button } from "@mui/material"
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -28,23 +30,28 @@ export const PhoneDetails = () => {
     return <p>Loading...</p>
   }
   return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
-      <div>
+    <Box display="flex" justifyContent="space-around" marginTop="2rem">
+      <div width="100%">
         <img src={phone.img} alt={`${phone.brand} ${phone.model}`} />
       </div>
       <div>
-        <div>
+        <Box display="flex" flexDirection="column" gap="10px">
           {keys.map((key, id) => {
             if (!["id", "img", "storage", "color"].includes(key) && phone[key])
               return (
                 <div key={id}>
-                  <span>{key}:</span>
+                  <span style={{ fontWeight: "bold" }}>{key}: </span>
                   {phone[key]}
                 </div>
               )
           })}
-        </div>
-        <div>
+        </Box>
+        <Box
+          marginTop="1rem"
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between"
+        >
           <select onChange={({ target }) => setStorage(target.value)}>
             {phone && phone.storage?.length > 1 && (
               <option selected disabled>
@@ -72,10 +79,16 @@ export const PhoneDetails = () => {
                 </option>
               ))}
           </select>
+        </Box>
 
-          <button onClick={handleAddToCart}>Add to cart</button>
-        </div>
+        <Button
+          style={{ marginTop: "10px" }}
+          variant="contained"
+          onClick={handleAddToCart}
+        >
+          <AddShoppingCart />
+        </Button>
       </div>
-    </div>
+    </Box>
   )
 }

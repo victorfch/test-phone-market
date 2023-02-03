@@ -2,11 +2,3 @@
   box-sizing: content-box;
   margin: 0;
 }
-
-header {
-  padding: 1rem 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}

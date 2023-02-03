@@ -1,13 +1,13 @@
+import { ShoppingBag, ShoppingCart } from "@mui/icons-material"
+import { Badge } from "@mui/material"
 import { useSelector } from "react-redux"
-import styles from "./cart.module.css"
 
 export const Cart = () => {
   const cartItems = useSelector(state => state.cart)
 
   return (
-    <div className={styles.cart}>
-      <div className={styles.cart_len}>{cartItems.length}</div>
-      <div className="cart_title">Cart</div>
-    </div>
+    <Badge badgeContent={cartItems.length} color="error">
+      <ShoppingCart color="inherit" />
+    </Badge>
   )
 }
