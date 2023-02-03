@@ -8,7 +8,6 @@ import { useSinglePhone } from "../../hooks/useSinglePhone"
 export const PhoneDetails = () => {
   const { id } = useParams()
   const { phone, loading } = useSinglePhone(id)
-
   const dispatch = useDispatch()
 
   const handleAddToCart = cartItem => {
