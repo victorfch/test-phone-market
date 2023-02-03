@@ -23,4 +23,4 @@ Launches the test runner in the interactive watch mode.\
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Las api's no están disponibles desde el día xxx hasta el día xxx, para poder dar solución he creado/usado un servidor de mocks para poder realizar la oferta
+The api's are not available from 01/02/2023 to 03/02/2023, in order to provide a solution I have created a json file to simulate the fetch.
