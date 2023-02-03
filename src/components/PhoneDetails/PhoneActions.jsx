@@ -14,11 +14,7 @@ export const PhoneActions = ({ addToCart, phone }) => {
 
     item.storageCode =
       phone.storage?.length === 1 ? phone.storage[0].value : storage
-
     item.colorCode = phone.color?.length === 1 ? phone.color[0].value : color
-
-    console.log(item)
-
     addToCart(item)
   }
 
